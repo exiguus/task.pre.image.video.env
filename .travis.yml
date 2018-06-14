@@ -1,7 +1,6 @@
 dist: trusty
 sudo: required
 before_install:
-# install general dependencies
   - sudo apt-get install -y cmake
   - sudo apt-get install -y libicu-dev
   - sudo apt-get install -y libz-dev

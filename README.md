@@ -1,11 +1,13 @@
 [![tests][tests]][tests-url]
 
-# task.pre.image.video.env [![task.pre.image.video][task.pre.image.video]][task.pre.image.video-url]
+# task.pre.image.video.env [![task.pre.image.video.env][task.pre.image.video.env]][task.pre.image.video.env-url]
 Grunt Task-Runner Environment to convert (responsive) images and videos.
 
 The Idea is to pre render content images and videos as assets for static site generator Environments like Jekyll, Hugo, Next, Gatsby or a Application Frameworks like Vue.js, Angular or React.
 
 ## Description
+
+![task.pre.image.video.env][task.pre.image.video.env.gif]
 
 ### Images
 Convert JPEG and PNG Images for each breakpoint (media-query):
@@ -71,8 +73,8 @@ Picture Element with WEBP and PNG fallback.
 
 ```html
 <picture>
-  <source srcset="dist/images/logo/logo.webp 1x, dist/images/logo/logo_x2.webp 2x" type="image/webp">
-  <source srcset="dist/images/logo/logo.png 1x, dist/images/logo/logo_x2.png 2x" type="image/png">
+  <source srcset="dist/images/logo/logo-header.webp 1x, dist/images/logo/logo-header_x2.webp 2x" type="image/webp">
+  <source srcset="dist/images/logo/logo-header.png 1x, dist/images/logo/logo-header_x2.png 2x" type="image/png">
   <img alt="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 </picture>
 ```
@@ -82,14 +84,14 @@ Picture Element with WEBP and JPEG fallback. Support Retina and 4 Breakpoints.
 
 ```html
 <picture>
-  <source srcset="../dist/images/hero/teepott-ld.webp 1x, ../dist/images/hero/teepott-ld_x2.webp 2x" media="(min-width: 1200px)" type="image/webp">
-  <source srcset="../dist/images/hero/teepott-md.webp 1x, ../dist/images/hero/teepott-md_x2.webp 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/webp">
-  <source srcset="../dist/images/hero/teepott-t.webp 1x, ../dist/images/hero/teepott-t_x2.webp 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/webp">
-  <source srcset="../dist/images/hero/teepott-m.webp 1x, ../dist/images/hero/teepott-m_x2.webp 2x" media="(max-width: 767px)" type="image/webp">
-  <source srcset="../dist/images/hero/teepott-ld.jpg 1x, ../dist/images/hero/teepott-ld_x2.jpg 2x" media="(min-width: 1200px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teepott-md.jpg 1x, ../dist/images/hero/teepott-md_x2.jpg 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teepott-t.jpg 1x, ../dist/images/hero/teepott-t_x2.jpg 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teepott-m.jpg 1x, ../dist/images/hero/teepott-m_x2.jpg 2x" media="(max-width: 767px)" type="image/jpeg">
+  <source srcset="../dist/images/hero/teapott-ld.webp 1x, ../dist/images/hero/teapott-ld_x2.webp 2x" media="(min-width: 1200px)" type="image/webp">
+  <source srcset="../dist/images/hero/teapott-md.webp 1x, ../dist/images/hero/teapott-md_x2.webp 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/webp">
+  <source srcset="../dist/images/hero/teapott-t.webp 1x, ../dist/images/hero/teapott-t_x2.webp 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/webp">
+  <source srcset="../dist/images/hero/teapott-m.webp 1x, ../dist/images/hero/teapott-m_x2.webp 2x" media="(max-width: 767px)" type="image/webp">
+  <source srcset="../dist/images/hero/teapott-ld.jpg 1x, ../dist/images/hero/teapott-ld_x2.jpg 2x" media="(min-width: 1200px)" type="image/jpeg">
+  <source srcset="../dist/images/hero/teapott-md.jpg 1x, ../dist/images/hero/teapott-md_x2.jpg 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/jpeg">
+  <source srcset="../dist/images/hero/teapott-t.jpg 1x, ../dist/images/hero/teapott-t_x2.jpg 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/jpeg">
+  <source srcset="../dist/images/hero/teapott-m.jpg 1x, ../dist/images/hero/teapott-m_x2.jpg 2x" media="(max-width: 767px)" type="image/jpeg">
   <img alt="Hero Image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 </picture>
 ```
@@ -203,7 +205,7 @@ npm run build-videos
 ```
 
 ## Used Plugins
-Used Grunt plugins for image and video generating, converting and optimisation:
+Used Grunt plugins for image and video generating, converting and optimising:
 
 * [grunt-image](https://www.npmjs.com/package/grunt-image) optimise PNG, JPEG, GIF and SVG images with pngquant, zopflipng, mozjpeg, gifsicle and svgo [`_grunt/images.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/image.js)
 * [grunt-responsive-images](https://www.npmjs.com/package/grunt-responsive-images) crop PNG and JPEG images [`_grunt/responsive_images/`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/responsive_images/)
@@ -211,10 +213,12 @@ Used Grunt plugins for image and video generating, converting and optimisation:
 * [grunt-webp](https://www.npmjs.com/package/grunt-webp) generate and optimise WEBP images [`_grunt/webp.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/webp.js)
 
 
-[task.pre.image.video]:
+[task.pre.image.video.env]:
 https://img.shields.io/badge/task.pre-image.video-blue.svg
-[task.pre.image.video-url]:
+[task.pre.image.video.env-url]:
 https://exiguus.github.com/task.pre.image.video.env/
 
 [tests]: https://img.shields.io/travis/exiguus/task.pre.image.video.env/master.svg
 [tests-url]: https://travis-ci.org/exiguus/task.pre.image.video.env
+
+[task.pre.image.video.env.gif]: https://exiguus.github.io/task.pre.image.video.env/task.pre.image.video.env.gif
