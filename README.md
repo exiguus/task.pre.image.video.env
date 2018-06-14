@@ -151,8 +151,8 @@ brew install node
 
 ```
 
-### Install with apt-get on (Debian/Ubuntu) Linux
-
+### Install with apt-get on (Ubuntu/Trusty) Linux
+See also `.travis.yml`.
 ```bash
 # install general dependencies
 sudo apt-get install -y cmake
@@ -160,10 +160,14 @@ sudo apt-get install -y libicu-dev
 sudo apt-get install -y libz-dev
 sudo apt-get install -y pkg-config
 # install image dependencies
-sudo apt-get install -y GraphicsMagick
+sudo apt-get install -y graphicsmagick
 sudo apt-get install -y webp
+sudo apt-get install -y nasm
 # install video dependencies
+sudo add-apt-repository ppa:mc3man/trusty-media -y
+sudo apt-get update -q
 sudo apt-get install -y ffmpeg
+sudo apt-get install -y gstreamer0.10-ffmpeg
 # install node.js
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -198,10 +202,14 @@ npm run build-images
 npm run build-videos
 ```
 
-## Generate muted mp4 sources
-```bash
-for v in ./*; do ffmpeg -i $v -vcodec copy -an $(echo $v | sed 's/.mp4$/-muted&/'); done
-```
+## Used Plugins
+Used Grunt plugins for image and video generating, converting and optimisation:
+
+* [grunt-image](https://www.npmjs.com/package/grunt-image) optimise PNG, JPEG, GIF and SVG images with pngquant, zopflipng, mozjpeg, gifsicle and svgo [`_grunt/images.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/image.js)
+* [grunt-responsive-images](https://www.npmjs.com/package/grunt-responsive-images) crop PNG and JPEG images [`_grunt/responsive_images/`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/responsive_images/)
+* [grunt-responsive-videos](https://www.npmjs.com/package/grunt-responsive-videos) crop and optimise MP4 and WEBM videos [`_grunt/responsive_videos/`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/responsive_videos/)
+* [grunt-webp](https://www.npmjs.com/package/grunt-webp) generate and optimise WEBP images [`_grunt/webp.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/webp.js)
+
 
 [task.pre.image.video]:
 https://img.shields.io/badge/task.pre-image.video-blue.svg
