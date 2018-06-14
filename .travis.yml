@@ -8,7 +8,10 @@ before_install:
   - sudo apt-get install -y pkg-config
   - sudo apt-get install -y graphicsmagick
   - sudo apt-get install -y webp
+  - sudo add-apt-repository ppa:mc3man/trusty-media -y
+  - sudo apt-get update -q
   - sudo apt-get install -y ffmpeg
+  - sudo apt-get install -y gstreamer0.10-ffmpeg
   - curl -sL https://deb.nodesource.com/setup_8.11.2 | sudo -E bash -
   - sudo apt-get install -y nodejs
   - npm install
