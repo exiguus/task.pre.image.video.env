@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "task.pre.image.video.env",
-  "description": "Grunt Task-Runner Environment to convert (responsive) images and videos.",
+  "description": "Task-Runner Environment to convert (responsive) images and videos.",
   "keywords": [
     "images",
     "picture",

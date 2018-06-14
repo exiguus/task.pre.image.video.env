@@ -1,7 +1,7 @@
 [![tests][tests]][tests-url]
 
 # task.pre.image.video.env [![task.pre.image.video.env][task.pre.image.video.env]][task.pre.image.video.env-url]
-Grunt Task-Runner Environment to convert (responsive) images and videos.
+Task-Runner Environment to convert (responsive) images and videos.
 
 The Idea is to pre render content images and videos as assets for static site generator Environments like Jekyll, Hugo, Next, Gatsby or a Application Frameworks like Vue.js, Angular or React.
 
@@ -205,7 +205,7 @@ npm run build-videos
 ```
 
 ## Used Plugins
-Used Grunt plugins for image and video generating, converting and optimising:
+Used Grunt plugins to generate, convert, crop and optimise images and videos:
 
 * [grunt-image](https://www.npmjs.com/package/grunt-image) optimise PNG, JPEG, GIF and SVG images with pngquant, zopflipng, mozjpeg, gifsicle and svgo [`_grunt/images.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/image.js)
 * [grunt-responsive-images](https://www.npmjs.com/package/grunt-responsive-images) crop PNG and JPEG images [`_grunt/responsive_images/`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/responsive_images/)
