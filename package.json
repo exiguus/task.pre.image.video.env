@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "name": "task.pre.image.video.env",
+  "description": "Grunt Task-Runner Environment to convert (responsive) images and videos.",
+  "keywords": [
+    "images",
+    "picture",
+    "video",
+    "movie",
+    "preparation",
+    "cropping",
+    "minify",
+    "optimize",
+    "convert",
+    "breakpoints",
+    "webp",
+    "jpeg",
+    "png",
+    "webm",
+    "mp4"
+  ],
+  "scripts": {
+    "start": "npm install && npm run build",
+    "build": "npm run build-images && npm run build-videos",
+    "build-images": "grunt images",
+    "build-videos": "grunt videos",
+    "lint": "node_modules/eslint/bin/eslint.js build/** Gruntfile.js",
+    "test-pre": "ls -R ./dist > ./dist.test",
+    "test": "npm run lint && npm run test-pre && npm run build && npm run test-dist",
+    "test-dist": "ls -R ./dist > ./dist.current && cmp --silent ./dist.test ./dist.current && (echo 'Success: Equal dist/ Test ok.' && exit 0) || (echo 'Error: Equal dist/ Test failed.' && exit 1)"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "grunt": "~0.4.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-exec": "^3.0.0",
+    "grunt-image": "^4.1.0",
+    "grunt-responsive-images": "^1.10.1",
+    "grunt-responsive-videos": "^0.1.3",
+    "grunt-webp": "0.0.4",
+    "jit-grunt": "^0.10.0",
+    "js.node.grunt.config.helper": "^1.0.1",
+    "load-grunt-configs": "^1.0.0",
+    "time-grunt": "^1.4.0"
+  },
+  "dependencies": {},
+  "author": "Simon Gattner <git@0x38.de>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exiguus/task.pre.image.video.env.git"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 6.0.1"
+  },
+  "editorConfig": ".editorconfig",
+  "eslintConfig": ".eslintrc"
+}

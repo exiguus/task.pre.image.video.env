@@ -1,0 +1,11 @@
+_docs/
+node_modules/
+tmp/
+TODO.md
+Thumbs.db
+.DS_Store
+.idea
+*.psd
+*.sketch
+*.lock
+*.iml

@@ -1,0 +1,18 @@
+dist: trusty
+sudo: required
+before_install:
+# install general dependencies
+  - sudo apt-get install -y cmake
+  - sudo apt-get install -y libicu-dev
+  - sudo apt-get install -y libz-dev
+  - sudo apt-get install -y pkg-config
+  - sudo apt-get install -y GraphicsMagick
+  - sudo apt-get install -y webp
+  - sudo apt-get install -y ffmpeg
+  - curl -sL https://deb.nodesource.com/setup_8.11.2 | sudo -E bash -
+  - sudo apt-get install -y nodejs
+  - npm install
+addons:
+  apt:
+    update: true
+script: npm test
