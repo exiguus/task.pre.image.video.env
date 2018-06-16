@@ -13,6 +13,10 @@ config.options = {
   options: {
     videos: {
       muted: true,
+      // grunt-responsive-videos
+      // https://github.com/sjwilliams/grunt-responsive-videos
+      // ffmpeg webp
+      // https://trac.ffmpeg.org/wiki/Encode/VP9
       webp: [
         {'-vcodec': 'libvpx'},
         {'-acodec': 'libvorbis'},
@@ -25,15 +29,18 @@ config.options = {
         {'-bufsize': '1000k'},
         {'-threads': '0'},
       ],
-    mp4: [
-      {'-vcodec': 'libx264'},
-      {'-pix_fmt': 'yuv420p'},
-      {'-q:v': '4'},
-      {'-q:a': '100'},
-      {'-threads': '0'},
-      ],
+      // ffmpeg mp4
+      // https://trac.ffmpeg.org/wiki/Encode/H.264
+      mp4: [
+          {'-vcodec': 'libx264'},
+          {'-pix_fmt': 'yuv420p'},
+          {'-q:v': '4'},
+          {'-q:a': '100'},
+          {'-threads': '0'},
+        ],
     },
     images: {
+      // grunt-webp
       // https://github.com/somerandomdude/grunt-webp
       // https://github.com/yuanyan/node-webp-bin
       // important optimize values are:
@@ -64,11 +71,71 @@ config.options = {
         // noAlpha: false,
         // lossless: false
       },
-      imagemin: {
-        progressive: true,
-        optimizationLevel: 6,
-        svgoPlugins: [
-          {removeViewBox: false},
+      // grunt-image
+      // https://www.npmjs.com/package/grunt-image
+      image: {
+        //
+        // simple
+        // http://optipng.sourceforge.net/ | https://linux.die.net/man/1/optipng
+        optipng: false,
+        // https://pngquant.org/ | http://manpages.ubuntu.com/manpages/bionic/man1/pngquant.1.html
+        // pngquant: true,
+        // https://github.com/google/zopfli | https://github.com/google/zopfli/blob/master/src/zopflipng/zopflipng_bin.cc
+        zopflipng: true,
+        // https://github.com/imagemin/imagemin-jpeg-recompress
+        jpegRecompress: false,
+        // https://github.com/mozilla/mozjpeg | https://github.com/mozilla/mozjpeg/blob/master/usage.txt
+        // mozjpeg: true,
+        // https://github.com/google/guetzli | http://manpages.ubuntu.com/manpages/artful/man1/guetzli.1.html
+        guetzli: false,
+        // https://www.lcdf.org/gifsicle/ | https://www.lcdf.org/gifsicle/man.html
+        // gifsicle: true,
+        // https://github.com/svg/svgo
+        // svgo: true,
+        //
+        // advance
+        // optipng: [
+        //   '-i 1',
+        //   '-strip all',
+        //   '-fix',
+        //   '-o7',
+        //   '-force',
+        // ],
+        pngquant: [
+          '--speed=1',
+          '--force',
+          256,
+        ],
+        // zopflipng: [
+        //   '-y',
+        //   '--lossy_8bit',
+        //   '--lossy_transparent',
+        //   '--strip',
+        // ],
+        // jpegRecompress: [
+        //   '--strip',
+        //   '--quality',
+        //   'medium',
+        //   '--min', 40,
+        //   '--max', 80,
+        // ],
+        mozjpeg: [
+          '-optimize',
+          '-progressive',
+        ],
+        // guetzli: [
+        //   '--quality',
+        //   85,
+        // ],
+        gifsicle: [
+          '--optimize',
+        ],
+        svgo: [
+          '--enable',
+          'cleanupIDs',
+          '--disable',
+          'convertColors',
+          'removeMetadata',
         ],
       },
     },
@@ -82,7 +149,7 @@ config.options = {
     tmp: 'tmp',
     tmpImages: 'tmp/src/images',
     tmpVideos: 'tmp/src/videos',
-    // dist folder with optimized files
+    // dist folder with optimised files
     dist: 'dist',
     distImages: 'dist/images',
     distVideos: 'dist/videos',

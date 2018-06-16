@@ -1,9 +1,19 @@
 [![tests][tests]][tests-url]
 
 # task.pre.image.video.env [![task.pre.image.video.env][task.pre.image.video.env]][task.pre.image.video.env-url]
-Task-Runner Environment to convert (responsive) images and videos.
+Task-Runner Environment to convert and optimise images and videos.
 
-The Idea is to pre render content images and videos as assets for static site generator Environments like Jekyll, Hugo, Next, Gatsby or a Application Frameworks like Vue.js, Angular or React.
+The Idea is to pre render content images and videos as assets for static site generator Environments like Jekyll, Hugo, Next, Gatsby or a Application Frameworks like Vue.js, Angular or React. The Environment is prepared for CI/CD.
+
+With the default options JPEG and PNG content Images are reduced
+~90% in size.
+If WEBP is used with JPEG as fallback in picture elements, content Images are reduced ~30% again in size for ~60% of all users.
+
+If WEBM is used with MP4 as fallback in video elements, content Videos may be reduced 4-20 times in size for ~60% of all users.
+
+This is relevant because the load time of webpages has a significant connection to requested file sizes and UX.
+On content driven webpages images and videos may cause more then 60% of the page size itself.
+Therefor its important to reduce request sizes beside the use of modern load technologies especially on mobile devices and slow networks.
 
 ## Description
 
@@ -26,8 +36,176 @@ Convert MP4 Videos for each breakpoint (media-query):
 
 Generate an optimised WEBM / MP4 (muted) Video for each breakpoint (media-query) from MP4.
 
+## Options
+
+The Task Environment is configurable in [`build/_grunt/config.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/config.js) with the following options:
+
+```javascript
+/**
+ * Configuration file
+ */
+let config = module.exports;
+
+config.options = {
+  config: {
+    // in this directory you can find your grunt config tasks
+    src: [
+      'build/helper/_grunt/*.js',
+    ],
+  },
+  options: {
+    videos: {
+      muted: true,
+      // grunt-responsive-videos
+      // https://github.com/sjwilliams/grunt-responsive-videos
+      // ffmpeg webp
+      // https://trac.ffmpeg.org/wiki/Encode/VP9
+      webp: [
+        {'-vcodec': 'libvpx'},
+        {'-acodec': 'libvorbis'},
+        {'-q:a': '100'},
+        {'-quality': 'good'},
+        {'-cpu-used': '0'},
+        {'-b:v': '500k'},
+        {'-qmax': '42'},
+        {'-maxrate': '500k'},
+        {'-bufsize': '1000k'},
+        {'-threads': '0'},
+      ],
+      // ffmpeg mp4
+      // https://trac.ffmpeg.org/wiki/Encode/H.264
+      mp4: [
+          {'-vcodec': 'libx264'},
+          {'-pix_fmt': 'yuv420p'},
+          {'-q:v': '4'},
+          {'-q:a': '100'},
+          {'-threads': '0'},
+        ],
+    },
+    images: {
+      // grunt-webp
+      // https://github.com/somerandomdude/grunt-webp
+      // https://github.com/yuanyan/node-webp-bin
+      // important optimize values are:
+      //  preset (default, photo, picture, drawing, icon, text)
+      //  sns (around 75)
+      //  filterStrength (normaly 20-30)
+      // compressionMethod (5 or 6)
+      webp: {
+        // binpath: require('webp-bin').path,
+        // preset: 'picture',
+        // verbose: false,
+        quality: 80,
+        // alphaQuality: 80,
+        compressionMethod: 6,
+        // segments: 4,
+        // psnr: 42,
+        // sns: 75,
+        // filterStrength: 20,
+        // filterSharpness: 4,
+        // simpleFilter: true,
+        // partitionLimit: 50,
+        // analysisPass: 10,
+        // multiThreading: true,
+        // lowMemory: false,
+        // alphaMethod: 0,
+        // alphaFilter: 'best',
+        // alphaCleanup: true,
+        // noAlpha: false,
+        // lossless: false
+      },
+      // grunt-image
+      // https://www.npmjs.com/package/grunt-image
+      image: {
+        //
+        // simple
+        // http://optipng.sourceforge.net/ | https://linux.die.net/man/1/optipng
+        optipng: false,
+        // https://pngquant.org/ | http://manpages.ubuntu.com/manpages/bionic/man1/pngquant.1.html
+        // pngquant: true,
+        // https://github.com/google/zopfli | https://github.com/google/zopfli/blob/master/src/zopflipng/zopflipng_bin.cc
+        zopflipng: true,
+        // https://github.com/imagemin/imagemin-jpeg-recompress
+        jpegRecompress: false,
+        // https://github.com/mozilla/mozjpeg | https://github.com/mozilla/mozjpeg/blob/master/usage.txt
+        // mozjpeg: true,
+        // https://github.com/google/guetzli | http://manpages.ubuntu.com/manpages/artful/man1/guetzli.1.html
+        guetzli: false,
+        // https://www.lcdf.org/gifsicle/ | https://www.lcdf.org/gifsicle/man.html
+        // gifsicle: true,
+        // https://github.com/svg/svgo
+        // svgo: true,
+        //
+        // advance
+        // optipng: [
+        //   '-i 1',
+        //   '-strip all',
+        //   '-fix',
+        //   '-o7',
+        //   '-force',
+        // ],
+        pngquant: [
+          '--speed=1',
+          '--force',
+          256,
+        ],
+        // zopflipng: [
+        //   '-y',
+        //   '--lossy_8bit',
+        //   '--lossy_transparent',
+        //   '--strip',
+        // ],
+        // jpegRecompress: [
+        //   '--strip',
+        //   '--quality',
+        //   'medium',
+        //   '--min', 40,
+        //   '--max', 80,
+        // ],
+        mozjpeg: [
+          '-optimize',
+          '-progressive',
+        ],
+        // guetzli: [
+        //   '--quality',
+        //   85,
+        // ],
+        gifsicle: [
+          '--optimize',
+        ],
+        svgo: [
+          '--enable',
+          'cleanupIDs',
+          '--disable',
+          'convertColors',
+          'removeMetadata',
+        ],
+      },
+    },
+  },
+  paths: {
+    // src folder
+    src: 'src',
+    srcImages: 'src/images',
+    srcVideos: 'src/videos',
+    // tmp folder
+    tmp: 'tmp',
+    tmpImages: 'tmp/src/images',
+    tmpVideos: 'tmp/src/videos',
+    // dist folder with optimised files
+    dist: 'dist',
+    distImages: 'dist/images',
+    distVideos: 'dist/videos',
+  },
+};
+
+
+```
+
 ## Example
-Find examples in `dist/` folder.
+![task.pre.image.video.env][task.pre.image.video.env.png]
+
+Find generated examples in `dist/` folder.
 
 ### Renderings
 
@@ -222,3 +400,5 @@ https://exiguus.github.com/task.pre.image.video.env/
 [tests-url]: https://travis-ci.org/exiguus/task.pre.image.video.env
 
 [task.pre.image.video.env.gif]: https://exiguus.github.io/task.pre.image.video.env/task.pre.image.video.env.gif
+
+[task.pre.image.video.env.png]: https://exiguus.github.io/task.pre.image.video.env/task.pre.image.video.env.png

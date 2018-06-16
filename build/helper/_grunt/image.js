@@ -1,15 +1,6 @@
 module.exports = {
   dist: {
-    options: {
-      optipng: false,
-      pngquant: true,
-      zopflipng: true,
-      jpegRecompress: false,
-      mozjpeg: true,
-      guetzli: false,
-      gifsicle: true,
-      svgo: true,
-    },
+    options: '<%= options.images.image %>',
     files: [{
       expand: true,
       cwd: '<%= paths.distImages %>/',

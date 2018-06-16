@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "task.pre.image.video.env",
-  "description": "Task-Runner Environment to convert (responsive) images and videos.",
+  "description": "Task-Runner Environment to convert and optimise images and videos.",
   "keywords": [
     "images",
     "picture",
@@ -11,13 +11,18 @@
     "cropping",
     "minify",
     "optimize",
+    "optimise",
     "convert",
     "breakpoints",
     "webp",
     "jpeg",
     "png",
     "webm",
-    "mp4"
+    "mp4",
+    "CD/CI",
+    "continuous integration",
+    "continuous delivery",
+    "static site generator"
   ],
   "scripts": {
     "start": "npm install && npm run build",
