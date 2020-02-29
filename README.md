@@ -1,6 +1,7 @@
 [![tests][tests]][tests-url]
 
 # task.pre.image.video.env [![task.pre.image.video.env][task.pre.image.video.env]][task.pre.image.video.env-url]
+
 Task-Runner Environment to convert and optimise images and videos.
 
 The Idea is to pre render content images and videos as assets for static site generator Environments like Jekyll, Hugo, Next, Gatsby or a Application Frameworks like Vue.js, Angular or React. The Environment is prepared for CI/CD.
@@ -20,7 +21,9 @@ Therefor its important to reduce request sizes beside the use of modern load tec
 ![task.pre.image.video.env][task.pre.image.video.env.gif]
 
 ### Images
+
 Convert JPEG and PNG Images for each breakpoint (media-query):
+
 * Size
   * width or height
   * quality
@@ -30,7 +33,9 @@ Convert JPEG and PNG Images for each breakpoint (media-query):
 Generate an optimised WEBP Image for each breakpoint (media-query) from JPEG or PNG.
 
 ### Videos
+
 Convert MP4 Videos for each breakpoint (media-query):
+
 * Size
 * Optimise
 
@@ -58,9 +63,9 @@ config.options = {
       muted: true,
       // grunt-responsive-videos
       // https://github.com/sjwilliams/grunt-responsive-videos
-      // ffmpeg webp
+      // ffmpeg webm
       // https://trac.ffmpeg.org/wiki/Encode/VP9
-      webp: [
+      webm: [
         {'-vcodec': 'libvpx'},
         {'-acodec': 'libvorbis'},
         {'-q:a': '100'},
@@ -203,6 +208,7 @@ config.options = {
 ```
 
 ## Example
+
 ![task.pre.image.video.env][task.pre.image.video.env.png]
 
 Find generated examples in `dist/` folder.
@@ -210,6 +216,7 @@ Find generated examples in `dist/` folder.
 ### Renderings
 
 #### Images
+
 Images are rendered by default in four breakpoints (like in bootstrap3):
 
 * large-desktop (`ld`)
@@ -219,7 +226,7 @@ Images are rendered by default in four breakpoints (like in bootstrap3):
 
 in JPEG / PNG and WEBP x1 and x2.
 
-```
+```plain
 [image-name]-[breakpoint-short-name](?_x2).(webp|jpg|png)
 ```
 
@@ -247,34 +254,55 @@ The following example exist:
   * m: `16:9`, `x2` and `1140px` width
 
 ##### WEBP / PNG picture element
+
 Picture Element with WEBP and PNG fallback.
+
+<picture>
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header_x2.webp 2x" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header.png 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header_x2.png 2x" type="image/png">
+  <img alt="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+</picture>
 
 ```html
 <picture>
-  <source srcset="dist/images/logo/logo-header.webp 1x, dist/images/logo/logo-header_x2.webp 2x" type="image/webp">
-  <source srcset="dist/images/logo/logo-header.png 1x, dist/images/logo/logo-header_x2.png 2x" type="image/png">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header_x2.webp 2x" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header.png 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/logo/logo-header_x2.png 2x" type="image/png">
   <img alt="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 </picture>
 ```
 
 ##### WEBP / JPEG picture element
+
 Picture Element with WEBP and JPEG fallback. Support Retina and 4 Breakpoints.
+
+<picture>
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master//dist/images/hero/teapott-ld.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld_x2.webp 2x" media="(min-width: 1200px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md_x2.webp 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t_x2.webp 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m_x2.webp 2x" media="(max-width: 767px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld_x2.jpg 2x" media="(min-width: 1200px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md_x2.jpg 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t_x2.jpg 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m_x2.jpg 2x" media="(max-width: 767px)" type="image/jpeg">
+  <img alt="Hero Image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+</picture>
 
 ```html
 <picture>
-  <source srcset="../dist/images/hero/teapott-ld.webp 1x, ../dist/images/hero/teapott-ld_x2.webp 2x" media="(min-width: 1200px)" type="image/webp">
-  <source srcset="../dist/images/hero/teapott-md.webp 1x, ../dist/images/hero/teapott-md_x2.webp 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/webp">
-  <source srcset="../dist/images/hero/teapott-t.webp 1x, ../dist/images/hero/teapott-t_x2.webp 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/webp">
-  <source srcset="../dist/images/hero/teapott-m.webp 1x, ../dist/images/hero/teapott-m_x2.webp 2x" media="(max-width: 767px)" type="image/webp">
-  <source srcset="../dist/images/hero/teapott-ld.jpg 1x, ../dist/images/hero/teapott-ld_x2.jpg 2x" media="(min-width: 1200px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teapott-md.jpg 1x, ../dist/images/hero/teapott-md_x2.jpg 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teapott-t.jpg 1x, ../dist/images/hero/teapott-t_x2.jpg 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/jpeg">
-  <source srcset="../dist/images/hero/teapott-m.jpg 1x, ../dist/images/hero/teapott-m_x2.jpg 2x" media="(max-width: 767px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master//dist/images/hero/teapott-ld.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld_x2.webp 2x" media="(min-width: 1200px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md_x2.webp 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t_x2.webp 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m.webp 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m_x2.webp 2x" media="(max-width: 767px)" type="image/webp">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-ld_x2.jpg 2x" media="(min-width: 1200px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-md_x2.jpg 2x" media="(min-width: 992px) and (max-width: 1199px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-t_x2.jpg 2x" media="(min-width: 768px) and (max-width: 991px)" type="image/jpeg">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m.jpg 1x, https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/images/hero/teapott-m_x2.jpg 2x" media="(max-width: 767px)" type="image/jpeg">
   <img alt="Hero Image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 </picture>
 ```
 
 #### Videos
+
 Images are rendered by default in four breakpoints (like in bootstrap3):
 
 * large-desktop (`ld`)
@@ -284,7 +312,7 @@ Images are rendered by default in four breakpoints (like in bootstrap3):
 
 in MP4 and WEBM x1.
 
-```
+```plain
 [video-name]-[breakpoint-short-name].(webm|mp4)
 ```
 
@@ -297,25 +325,38 @@ The following example exist:
   * m: `16:9`, `x1` and `768px` width
 
 ##### WEBM / MP4 video element
+
 Video Element with WEBM and MP4 fallback. (Because `srcset` is not supported in `source` elements, you may use JavaScript to switch `srcset` to `src` in the current Breakpoint).
+
+<video autoplay="autoplay" preload="auto" loop="loop" muted="muted">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-ld.webm" media="(min-width: 1200px)" type="video/webm">
+  <source src="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-md.webm" media="(min-width: 992px) and (max-width: 1199px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-t.webm" media="(min-width: 768px) and (max-width: 991px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-m.webm" media="(max-width: 767px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-ld.mp4" media="(min-width: 1200px)" type="video/mp4">
+  <source src="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-md.mp4" media="(min-width: 992px) and (max-width: 1199px)" type="video/mp4">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-t.mp4" media="(min-width: 768px) and (max-width: 991px)" type="video/mp4">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-m.mp4" media="(max-width: 767px)" type="video/mp4">
+</video>
 
 ```html
 <video autoplay="autoplay" preload="auto" loop="loop" muted="muted">
-  <source srcset="../dist/videos/hero/hero-muted-ld.webm" media="(min-width: 1200px)" type="video/webm">
-  <source src="../dist/videos/hero/hero-muted-md.webm" media="(min-width: 992px) and (max-width: 1199px)" type="video/webm">
-  <source srcset="../dist/videos/hero/hero-muted-t.webm" media="(min-width: 768px) and (max-width: 991px)" type="video/webm">
-  <source srcset="../dist/videos/hero/hero-muted-m.webm" media="(max-width: 767px)" type="video/webm">
-  <source srcset="../dist/videos/hero/hero-muted-ld.mp4" media="(min-width: 1200px)" type="video/mp4">
-  <source src="../dist/videos/hero/hero-muted-md.mp4" media="(min-width: 992px) and (max-width: 1199px)" type="video/mp4">
-  <source srcset="../dist/videos/hero/hero-muted-t.mp4" media="(min-width: 768px) and (max-width: 991px)" type="video/mp4">
-  <source srcset="../dist/videos/hero/hero-muted-m.mp4" media="(max-width: 767px)" type="video/mp4">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-ld.webm" media="(min-width: 1200px)" type="video/webm">
+  <source src="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-md.webm" media="(min-width: 992px) and (max-width: 1199px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-t.webm" media="(min-width: 768px) and (max-width: 991px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-m.webm" media="(max-width: 767px)" type="video/webm">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-ld.mp4" media="(min-width: 1200px)" type="video/mp4">
+  <source src="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-md.mp4" media="(min-width: 992px) and (max-width: 1199px)" type="video/mp4">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-t.mp4" media="(min-width: 768px) and (max-width: 991px)" type="video/mp4">
+  <source srcset="https://raw.githubusercontent.com/exiguus/task.pre.image.video.env/master/dist/videos/hero/hero-muted-m.mp4" media="(max-width: 767px)" type="video/mp4">
 </video>
 ```
 
 ## Deep Development Dependencies
+
 System Libs and Software to install
 
-### Install with brew on MAC OS:
+### Install with brew on MAC OS
 
 ```bash
 # install general dependencies
@@ -332,7 +373,9 @@ brew install node
 ```
 
 ### Install with apt-get on (Ubuntu/Trusty) Linux
+
 See also `.travis.yml`.
+
 ```bash
 # install general dependencies
 sudo apt-get install -y cmake
@@ -354,6 +397,7 @@ sudo apt-get install -y nodejs
 ```
 
 ## run
+
 ```bash
 npm start
 ```
@@ -383,6 +427,7 @@ npm run build-videos
 ```
 
 ## Used Plugins
+
 Used Grunt plugins to generate, convert, crop and optimise images and videos:
 
 * [grunt-image](https://www.npmjs.com/package/grunt-image) optimise PNG, JPEG, GIF and SVG images with pngquant, zopflipng, mozjpeg, gifsicle and svgo [`_grunt/images.js`](https://github.com/exiguus/task.pre.image.video.env/blob/master/build/helper/_grunt/image.js)

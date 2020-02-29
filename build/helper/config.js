@@ -15,9 +15,9 @@ config.options = {
       muted: true,
       // grunt-responsive-videos
       // https://github.com/sjwilliams/grunt-responsive-videos
-      // ffmpeg webp
+      // ffmpeg webm
       // https://trac.ffmpeg.org/wiki/Encode/VP9
-      webp: [
+      webm: [
         {'-vcodec': 'libvpx'},
         {'-acodec': 'libvorbis'},
         {'-q:a': '100'},
